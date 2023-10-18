@@ -9,7 +9,7 @@ class HTTPRequest:
     http_method: HTTPMethod = field(default=HTTPMethod.GET)
     url: str = field(default=EMPTY_STRING)
     headers: dict[str, str] = field(default_factory=lambda: {})
-    body: str = field(default=EMPTY_STRING)
+    body: dict = field(default_factory=lambda: {})
     connect_timeout: int = field(default=CONNECT_TIMEOUT)
     read_timeout: int = field(default=READ_TIMEOUT)
 

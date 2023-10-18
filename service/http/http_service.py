@@ -25,11 +25,14 @@ class HTTPService:
             response=str(response.read(), encoding=DEFAULT_ENCODING),
             http_code=response.status
         )
+
+        HTTPConnector.close_http_connection(response)
+
         return http_response
 
 
 # Class exception
 class HTTPServiceException(Exception):
     def __int__(self, msg: str):
+        super().__init__(msg)
         self.__msg = msg
-        super().__init__(self.__msg)
