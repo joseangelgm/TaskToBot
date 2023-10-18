@@ -12,6 +12,10 @@ from service.telegram.telegram_service_commons import TelegramServiceCommons
 
 
 class TelegramAdminService(TelegramServiceCommons):
+    """
+    Class that manage admin operations with telegram api
+    """
+
     __LOGGER: Logger = logging.getLogger(__name__)
 
     def __init__(self) -> None:
