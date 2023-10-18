@@ -6,8 +6,8 @@ from service.http.http_method import HTTPMethod
 from service.http.http_request import HTTPRequest
 from service.http.http_response import HTTPResponse
 from service.http.http_service import HTTPService
-from service.telegram.admin.webhook_info_response import WebhookInfoResponse
-from service.telegram.admin.webhook_update_request import WebhookUpdateRequest
+from service.telegram.admin.response.webhook_info_response import WebhookInfoResponse
+from service.telegram.admin.request.webhook_update_request import WebhookUpdateRequest
 from service.telegram.telegram_service_commons import TelegramServiceCommons
 
 
