@@ -32,6 +32,13 @@ class HTTPConnector:
             http_response = urlopen(request)
         else: # POST
             if http_request.body is {}:
+                request: Request = Request(
+                    url=http_request.url,
+                    method=http_request.http_method.value,
+                    headers=http_request.headers,
+                )
+                http_response = urlopen(request)
+            else:
                 post_data = parse.urlencode(http_request.body).encode(encoding=DEFAULT_ENCODING)
 
                 request: Request = Request(
@@ -40,13 +47,6 @@ class HTTPConnector:
                     headers=http_request.headers,
                 )
                 http_response = urlopen(request, data=post_data)
-            else:
-                request: Request = Request(
-                    url=http_request.url,
-                    method=http_request.http_method.value,
-                    headers=http_request.headers,
-                )
-                http_response = urlopen(request)
 
         return http_response
 
