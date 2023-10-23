@@ -2,10 +2,12 @@ import json
 import logging
 from logging import Logger
 
+from config.constants import TELEGRAM_BOT_NGROK_TUNNEL_NAME
 from service.http.http_method import HTTPMethod
 from service.http.http_request import HTTPRequest
 from service.http.http_response import HTTPResponse
 from service.http.http_service import HTTPService
+from service.ngrok_service import NgrokService
 from service.telegram.admin.response.webhook_info_response import WebhookInfoResponse
 from service.telegram.admin.request.webhook_update_request import WebhookUpdateRequest
 from service.telegram.telegram_service_commons import TelegramServiceCommons
@@ -23,10 +25,12 @@ class TelegramAdminService(TelegramServiceCommons):
         self.__telegram_bot_token: str = ""  # TODO: recover token from cache
 
     def update_webhook(self) -> None:
-        # TODO: recover actual endpoint
+
+        # TODO: manage exceptions
+        telegram_bot_public_url: str = NgrokService.get_tunnel_endpoint(TELEGRAM_BOT_NGROK_TUNNEL_NAME)
 
         webhook_update_request: WebhookUpdateRequest = WebhookUpdateRequest(
-            url="https://testurl.com"
+            url=telegram_bot_public_url
         )
 
         http_request: HTTPRequest = HTTPRequest(
@@ -38,7 +42,9 @@ class TelegramAdminService(TelegramServiceCommons):
             body=webhook_update_request.to_telegram_request()
         )
 
-        HTTPService.make_http_request(http_request=http_request)
+        response: HTTPResponse = HTTPService.make_http_request(http_request=http_request)
+        print(response)
+        # TODO: Print new webhook and success message
 
     def get_current_webhook(self) -> WebhookInfoResponse:
         """
