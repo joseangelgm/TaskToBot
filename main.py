@@ -1,7 +1,7 @@
 import sys
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-from config.constants import DEFAULT_ENCODING
+from config.constants import HTTP_SERVER_IP, HTTP_SERVER_PORT
 from service.telegram.admin.telegram_admin_service import TelegramAdminService
 
 
@@ -11,7 +11,10 @@ class WebRequestHandler(BaseHTTPRequestHandler):
 
         secret_token: str = self.headers.get("X-Telegram-Bot-Api-Secret-Token")
 
-        print(f"Secret token {secret_token}")
+        content_length: int = int(self.headers.get("Content-Length"))
+        request_content: str = str(self.rfile.read(content_length))
+
+        print(f"Request body: {request_content}\nSecret token {secret_token}")
 
         self.send_response(200)
 
@@ -19,9 +22,8 @@ class WebRequestHandler(BaseHTTPRequestHandler):
         self.send_header("Content-Type", "application/json")
 
         self.wfile.write("Hello World".encode(encoding=DEFAULT_ENCODING))
-        self.end_headers()
         """
-
+        self.end_headers()
 
 if __name__ == "__main__":
 
@@ -30,11 +32,17 @@ if __name__ == "__main__":
         print("Python version has to be at least 3.9")
         sys.exit(-1)
 
+    """
     telegram_admin_service: TelegramAdminService = TelegramAdminService()
     telegram_admin_service.update_webhook()
 
     # Config log
+    """
+
+    telegram_admin_service: TelegramAdminService = TelegramAdminService()
+    telegram_admin_service.update_webhook()
 
     # Init http server
-    server = HTTPServer(("localhost", 80), WebRequestHandler)
+    server = HTTPServer((HTTP_SERVER_IP, HTTP_SERVER_PORT), WebRequestHandler)
     server.serve_forever()
+
