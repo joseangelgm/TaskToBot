@@ -9,4 +9,6 @@ class HTTPResponse:
     headers: dict[str, str] = field(default_factory=lambda: {})
     response: str = field(default=EMPTY_STRING)
 
+    def is_bad_http_request(self) -> bool:
+        return self.http_code > 299
 
