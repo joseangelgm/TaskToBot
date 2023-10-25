@@ -8,7 +8,6 @@ from service.telegram.admin.telegram_admin_service import TelegramAdminService
 class WebRequestHandler(BaseHTTPRequestHandler):
 
     def do_POST(self):
-
         secret_token: str = self.headers.get("X-Telegram-Bot-Api-Secret-Token")
 
         content_length: int = int(self.headers.get("Content-Length"))
@@ -24,6 +23,7 @@ class WebRequestHandler(BaseHTTPRequestHandler):
         self.wfile.write("Hello World".encode(encoding=DEFAULT_ENCODING))
         """
         self.end_headers()
+
 
 if __name__ == "__main__":
 
@@ -44,5 +44,8 @@ if __name__ == "__main__":
 
     # Init http server
     server = HTTPServer((HTTP_SERVER_IP, HTTP_SERVER_PORT), WebRequestHandler)
-    server.serve_forever()
-
+    try:
+        server.serve_forever()
+    except Exception as e:
+        print(e)
+    server.server_close()
