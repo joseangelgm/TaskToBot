@@ -1,5 +1,6 @@
 import logging
 
+from src.application.service.telegram.admin.telegram_admin_service import TelegramAdminService
 from src.application.save_telegram_bot_token import SaveTelegramBotToken
 from src.application.service.redis.redis_connector import RedisConnector
 from src.application.service.static_storage_service import StaticStorageService
@@ -24,6 +25,9 @@ class SetUpBot:
         RedisConnector.initialize()
 
         SaveTelegramBotToken.save_telegram_bot_token_from_environment()
+
+        telegram_admin_service: TelegramAdminService = TelegramAdminService()
+        telegram_admin_service.update_webhook()
 
     @classmethod
     def onShutdown(cls) -> None:
