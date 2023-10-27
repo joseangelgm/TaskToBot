@@ -49,7 +49,7 @@ class TelegramAdminService(TelegramServiceCommons):
     def get_current_webhook(self) -> WebhookInfoResponse:
         """
         Get the current information of webhook set in telegram
-        :return:
+        :return: WebhookInfoResponse
         """
         http_request: HTTPRequest = HTTPRequest(
             url=self._build_telegram_api_url_for_method(

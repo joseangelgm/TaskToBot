@@ -5,7 +5,7 @@ from typing import Any
 class StaticStorageService:
 
     __storage: dict = None
-    __LOGGER: logging.Logger = logging.getLogger()
+    __LOGGER: logging.Logger = logging.getLogger(__name__)
 
     # TODO: Raise exception
     def __init__(self) -> None:
@@ -24,5 +24,9 @@ class StaticStorageService:
         return cls.__storage.get(data_key, None)
 
     @classmethod
-    def set_value(cls, data_key: str, data_value: Any) -> Any:
+    def set_value(cls, data_key: str, data_value: Any) -> None:
         cls.__storage[data_key] = data_value
+
+    @classmethod
+    def destroy(cls) -> None:
+        del cls.__storage

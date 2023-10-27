@@ -2,6 +2,7 @@ import sys
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 from config.constants import HTTP_SERVER_IP, HTTP_SERVER_PORT
+from config.set_up_bot import SetUpBot
 from service.telegram.admin.telegram_admin_service import TelegramAdminService
 
 
@@ -39,6 +40,8 @@ if __name__ == "__main__":
     # Config log
     """
 
+    SetUpBot.onStart()
+
     telegram_admin_service: TelegramAdminService = TelegramAdminService()
     telegram_admin_service.update_webhook()
 
@@ -48,4 +51,6 @@ if __name__ == "__main__":
         server.serve_forever()
     except Exception as e:
         print(e)
-    server.server_close()
+    finally:
+        server.server_close()
+        SetUpBot.onShutdown()

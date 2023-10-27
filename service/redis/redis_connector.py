@@ -25,8 +25,8 @@ class RedisConnector:
         )
 
         StaticStorageService.set_value(
-            REDIS_CONNECTION_POOL_NAME,
-            connection_pool
+            data_key=REDIS_CONNECTION_POOL_NAME,
+            data_value=connection_pool
         )
 
         cls.__LOGGER.log(
