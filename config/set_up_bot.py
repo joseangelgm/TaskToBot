@@ -1,5 +1,6 @@
 import logging
 
+from src.application.save_telegram_bot_token import SaveTelegramBotToken
 from src.application.service.redis.redis_connector import RedisConnector
 from src.application.service.static_storage_service import StaticStorageService
 
@@ -21,6 +22,8 @@ class SetUpBot:
 
         StaticStorageService.initialize()
         RedisConnector.initialize()
+
+        SaveTelegramBotToken.save_telegram_bot_token_from_environment()
 
     @classmethod
     def onShutdown(cls) -> None:
