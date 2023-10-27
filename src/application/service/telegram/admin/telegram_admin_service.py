@@ -2,7 +2,7 @@ import json
 import logging
 from logging import Logger
 
-from config.constants import TELEGRAM_BOT_NGROK_TUNNEL_NAME
+from config.constants import BOT_TOKEN_CACHE_KEY, DEFAULT_ENCODING, TELEGRAM_BOT_NGROK_TUNNEL_NAME
 from src.application.service.http.http_method import HTTPMethod
 from src.application.service.http.http_request import HTTPRequest
 from src.application.service.http.http_response import HTTPResponse
@@ -11,7 +11,7 @@ from src.application.service.ngrok_service import NgrokService
 from src.application.service.telegram.admin.response.webhook_info_response import WebhookInfoResponse
 from src.application.service.telegram.admin.request.webhook_update_request import WebhookUpdateRequest
 from src.application.service.telegram.telegram_service_commons import TelegramServiceCommons
-
+from src.application.service.redis.redis_service import RedisService
 
 class TelegramAdminService(TelegramServiceCommons):
     """
@@ -22,7 +22,7 @@ class TelegramAdminService(TelegramServiceCommons):
 
     def __init__(self) -> None:
         super().__init__()
-        self.__telegram_bot_token: str = ""  # TODO: recover token from cache
+        self.__telegram_bot_token: str = RedisService.get_value_as_str(BOT_TOKEN_CACHE_KEY)
 
     def update_webhook(self) -> None:
 
