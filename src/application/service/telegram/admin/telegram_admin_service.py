@@ -2,7 +2,7 @@ import json
 import logging
 from logging import Logger
 
-from config.constants import BOT_TOKEN_CACHE_KEY, DEFAULT_ENCODING, TELEGRAM_BOT_NGROK_TUNNEL_NAME
+from config.constants import BOT_TOKEN_CACHE_KEY, TELEGRAM_BOT_NGROK_TUNNEL_NAME
 from src.application.service.http.http_method import HTTPMethod
 from src.application.service.http.http_request import HTTPRequest
 from src.application.service.http.http_response import HTTPResponse
