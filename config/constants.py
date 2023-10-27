@@ -20,4 +20,4 @@ TELEGRAM_BOT_NGROK_TUNNEL_NAME: str = "telegram_bot"
 REDIS_HOST: str = "127.0.0.1"
 REDIS_PORT: int = 6379
 REDIS_MAX_CONNECTIONS: int = 10
-REDIS_CONNECTION_POOL_NAME: str = "pool"
+REDIS_CONNECTION_POOL_NAME: str = "telegram_bot_pool"
