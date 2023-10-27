@@ -3,10 +3,10 @@ import logging
 from logging import Logger
 
 from config.constants import NGROK_IP, NGROK_PORT, NGROK_TUNNELS_API
-from service.http.http_method import HTTPMethod
-from service.http.http_request import HTTPRequest
-from service.http.http_response import HTTPResponse
-from service.http.http_service import HTTPService
+from src.application.service.http.http_method import HTTPMethod
+from src.application.service.http.http_request import HTTPRequest
+from src.application.service.http.http_response import HTTPResponse
+from src.application.service.http.http_service import HTTPService
 
 
 class NgrokService:

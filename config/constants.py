@@ -2,6 +2,11 @@ EMPTY_STRING: str = ''
 
 DEFAULT_ENCODING: str = 'utf-8'
 
+# TELEGRAM BOT
+TELEGRAM_API_ENDPOINT: str = "https://api.telegram.org/bot"
+BOT_MAX_CONNECTIONS: int = 10
+BOT_DROP_PENDING_UPDATES: bool = False
+
 # Telegram bot http server
 HTTP_SERVER_IP: str = "localhost"
 HTTP_SERVER_PORT: int = 8080
@@ -12,7 +17,7 @@ READ_TIMEOUT: int = 5
 
 # NGROK
 NGROK_IP: str = "127.0.0.1"
-NGROK_PORT: int = 4040
+NGROK_PORT: int = 5555
 NGROK_TUNNELS_API: str = "api/tunnels"
 TELEGRAM_BOT_NGROK_TUNNEL_NAME: str = "telegram_bot"
 

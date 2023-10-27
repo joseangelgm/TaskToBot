@@ -3,14 +3,14 @@ import logging
 from logging import Logger
 
 from config.constants import TELEGRAM_BOT_NGROK_TUNNEL_NAME
-from service.http.http_method import HTTPMethod
-from service.http.http_request import HTTPRequest
-from service.http.http_response import HTTPResponse
-from service.http.http_service import HTTPService
-from service.ngrok_service import NgrokService
-from service.telegram.admin.response.webhook_info_response import WebhookInfoResponse
-from service.telegram.admin.request.webhook_update_request import WebhookUpdateRequest
-from service.telegram.telegram_service_commons import TelegramServiceCommons
+from src.application.service.http.http_method import HTTPMethod
+from src.application.service.http.http_request import HTTPRequest
+from src.application.service.http.http_response import HTTPResponse
+from src.application.service.http.http_service import HTTPService
+from src.application.service.ngrok_service import NgrokService
+from src.application.service.telegram.admin.response.webhook_info_response import WebhookInfoResponse
+from src.application.service.telegram.admin.request.webhook_update_request import WebhookUpdateRequest
+from src.application.service.telegram.telegram_service_commons import TelegramServiceCommons
 
 
 class TelegramAdminService(TelegramServiceCommons):

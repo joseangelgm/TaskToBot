@@ -1,9 +1,9 @@
 from http.client import HTTPResponse as httpResponse
 
 from config.constants import DEFAULT_ENCODING
-from service.http.http_connector import HTTPConnector
-from service.http.http_request import HTTPRequest
-from service.http.http_response import HTTPResponse
+from src.application.service.http.http_connector import HTTPConnector
+from src.application.service.http.http_request import HTTPRequest
+from src.application.service.http.http_response import HTTPResponse
 
 
 class HTTPService:

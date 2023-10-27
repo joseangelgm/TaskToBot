@@ -2,8 +2,7 @@ import uuid
 from dataclasses import dataclass, field
 from typing import List
 
-from config.constants import EMPTY_STRING
-from service.telegram.telegram_config import BOT_MAX_CONNECTIONS, BOT_DROP_PENDING_UPDATES
+from config.constants import BOT_DROP_PENDING_UPDATES, BOT_MAX_CONNECTIONS, EMPTY_STRING
 
 
 @dataclass(init=True, repr=True)

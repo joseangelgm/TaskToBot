@@ -1,8 +1,7 @@
-
 import logging
-from service.redis.redis_connector import RedisConnector
 
-from service.static_storage_service import StaticStorageService
+from src.application.service.redis.redis_connector import RedisConnector
+from src.application.service.static_storage_service import StaticStorageService
 
 
 class SetUpBot:

@@ -2,7 +2,7 @@ from typing import Any
 
 from redis import Redis
 
-from service.redis.redis_connector import RedisConnector
+from src.application.service.redis.redis_connector import RedisConnector
 
 
 class RedisService:
