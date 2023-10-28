@@ -24,6 +24,8 @@ class RedisService:
         redis_connection: Redis = RedisConnector.get_connection()
         value: bytes = redis_connection.get(key)
         RedisConnector.close_connection(redis_connection)
+        if not value:
+            return None
         return str(value, encoding=DEFAULT_ENCODING)
 
     @classmethod

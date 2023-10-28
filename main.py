@@ -1,10 +1,11 @@
 #!/usr/bin/env python3.9
 
+import logging
 import sys
 from http.server import HTTPServer
 
 from config.constants import HTTP_SERVER_IP, HTTP_SERVER_PORT
-from config.set_up_bot import SetUpBot
+from config.set_up_bot import SetUpBot, SetUpBotException
 from src.infraestructure.telegram_bot_http_request_handler import TelegramBotHttpRequestHandler
 
 
@@ -18,7 +19,18 @@ if __name__ == "__main__":
     # Config log
 
 
-    SetUpBot.onStart()
+    LOGGER: logging.Logger = logging.getLogger(__name__)
+
+    try:
+        SetUpBot.onStart()
+    except SetUpBotException as e:
+        LOGGER.log(
+            level=logging.ERROR,
+            msg=e,
+            exc_info=True
+        )
+        SetUpBot.onShutdown()
+        sys.exit(-1)
 
     # Init http server
     server = HTTPServer(
