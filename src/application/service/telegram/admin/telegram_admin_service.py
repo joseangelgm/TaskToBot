@@ -1,8 +1,9 @@
 import json
 import logging
-from logging import ERROR, INFO, Logger
+from logging import INFO, Logger
+import uuid
 
-from config.constants import BOT_TOKEN_CACHE_KEY, TELEGRAM_BOT_NGROK_TUNNEL_NAME
+from config.constants import BOT_SECRET_TOKEN_HEADER, BOT_TOKEN_CACHE_KEY, TELEGRAM_BOT_NGROK_TUNNEL_NAME
 from src.application.service.http.http_method import HTTPMethod
 from src.application.service.http.http_request import HTTPRequest
 from src.application.service.http.http_response import HTTPResponse
@@ -45,8 +46,11 @@ class TelegramAdminService(TelegramServiceCommons):
         except NgrokServiceException as e:
             raise TelegramAdminServiceException(e) from e
         
+        secret_token: str = self.__generate_secret_token()
+
         webhook_update_request: WebhookUpdateRequest = WebhookUpdateRequest(
-            url=telegram_bot_public_url
+            url=telegram_bot_public_url,
+            secret_token=secret_token
         )
 
         del telegram_bot_public_url
@@ -68,6 +72,9 @@ class TelegramAdminService(TelegramServiceCommons):
             level=INFO,
             msg=http_response
         )
+
+        RedisService.set_value(BOT_SECRET_TOKEN_HEADER, secret_token)
+        del secret_token
 
     def get_current_webhook(self) -> WebhookInfoResponse:
         """
@@ -98,6 +105,12 @@ class TelegramAdminService(TelegramServiceCommons):
         return WebhookInfoResponse.build_from_telegram_response(
             telegram_response=telegram_response['result']
         )
+
+    def __generate_secret_token(self) -> str:
+        """
+        Generate a new secret http token for telegram requests
+        """
+        return str(uuid.uuid4())
 
 class TelegramAdminServiceException(Exception):
     def __init__(self, *args: object) -> None:
