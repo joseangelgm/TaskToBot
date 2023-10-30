@@ -17,12 +17,29 @@ class RedisConnector:
 
     @classmethod
     def initialize(cls) -> None:
+        """
+        Create connection pool to redis and store it in static storage
+
+        :raise: RedisConnectorNotRunningException if redis service is down
+        """
+
         connection_pool:  redis.ConnectionPool = redis.ConnectionPool(
             host=REDIS_HOST,
             port=REDIS_PORT,
             max_connections=REDIS_MAX_CONNECTIONS,
             db=0
         )
+
+        # Test if redis is running
+        redis_connection: Redis = redis.Redis(connection_pool=connection_pool)
+        try:
+            redis_connection.ping()
+        except redis.ConnectionError as e:
+            raise RedisConnectorNotRunningException from e
+        finally:
+            cls.close_connection(redis_connection)
+            del redis_connection
+
 
         StaticStorageService.set_value(
             data_key=REDIS_CONNECTION_POOL_NAME,
@@ -57,3 +74,10 @@ class RedisConnector:
         # Close the pool, disconnecting all connections
         connection_pool.close()
 
+class RedisConnectorException(Exception):
+    def __init__(self, *args: object) -> None:
+        super().__init__(*args)
+
+class RedisConnectorNotRunningException(RedisConnectorException):
+    def __init__(self, *args: object) -> None:
+        super().__init__(*args)

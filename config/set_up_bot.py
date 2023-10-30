@@ -2,7 +2,7 @@ import logging
 
 from src.application.service.telegram.admin.telegram_admin_service import TelegramAdminService, TelegramAdminServiceException
 from src.application.telegram.save_telegram_bot_token import SaveTelegramBotToken
-from src.application.service.redis.redis_connector import RedisConnector
+from src.application.service.redis.redis_connector import RedisConnector, RedisConnectorNotRunningException
 from src.application.service.static_storage_service import StaticStorageService
 
 
@@ -37,7 +37,10 @@ class SetUpBot:
         )
 
         StaticStorageService.initialize()
-        RedisConnector.initialize()
+        try:
+            RedisConnector.initialize()
+        except RedisConnectorNotRunningException as e:
+            raise SetUpBotException from e
 
         SaveTelegramBotToken.save_telegram_bot_token_from_environment()
 
