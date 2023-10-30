@@ -1,18 +1,20 @@
 import logging
 
 from src.application.service.telegram.admin.telegram_admin_service import TelegramAdminService, TelegramAdminServiceException
-from src.application.save_telegram_bot_token import SaveTelegramBotToken
+from src.application.telegram.save_telegram_bot_token import SaveTelegramBotToken
 from src.application.service.redis.redis_connector import RedisConnector
 from src.application.service.static_storage_service import StaticStorageService
 
 
 class SetUpBot:
+    """
+    Class that create all things required to bot start up
+    """
 
     __LOGGER: logging.Logger = logging.getLogger(__name__)
 
-    # TODO: Raise exception
     def __init__(self) -> None:
-        pass
+        raise SetUpBotException("This class cannot be instantiate!!. Only has static methods")
 
     @classmethod
     def onStart(cls) -> None:
@@ -22,6 +24,13 @@ class SetUpBot:
         :raise: SetUpBotException
         """
         
+        logging.basicConfig(
+            format='[%(asctime)s.%(msecs)03d] - %(levelname)s - %(name)s - %(message)s',
+            datefmt='%Y-%m-%d %H:%M:%S',
+            encoding='utf-8',
+            level=logging.DEBUG,
+        )
+
         cls.__LOGGER.log(
             level=logging.INFO,
             msg=f"Starting telegram bot..."
