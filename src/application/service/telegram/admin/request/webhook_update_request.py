@@ -1,4 +1,3 @@
-import uuid
 from dataclasses import dataclass, field
 from typing import List
 
@@ -10,10 +9,10 @@ class WebhookUpdateRequest:
     url: str = field(default=EMPTY_STRING)
     # certificate: InputFile ...
     # ip_address: str = field(default=EMPTY_STRING)
-    max_connections: int = field(default=BOT_MAX_CONNECTIONS, init=False)
+    max_connections: int = field(default=BOT_MAX_CONNECTIONS)
     allowed_updates: List[str] = field(default_factory=lambda: list())
-    drop_pending_updates: bool = field(default=BOT_DROP_PENDING_UPDATES, init=False)
-    secret_token: str = field(default=str(uuid.uuid4()), init=False)
+    drop_pending_updates: bool = field(default=BOT_DROP_PENDING_UPDATES)
+    secret_token: str = field(default=EMPTY_STRING)
 
     def to_telegram_request(self) -> dict:
         """
