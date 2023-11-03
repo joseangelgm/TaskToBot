@@ -1,9 +1,9 @@
 from typing import Any
 
 from redis import Redis
-from config.constants import DEFAULT_ENCODING
+from src.bot.constants import DEFAULT_ENCODING
 
-from src.application.service.redis.redis_connector import RedisConnector
+from src.bot.application.shared.redis.redis_connector import RedisConnector
 
 
 class RedisService:

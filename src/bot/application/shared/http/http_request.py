@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 
-from config.constants import EMPTY_STRING, CONNECT_TIMEOUT, READ_TIMEOUT
-from src.application.service.http.http_method import HTTPMethod
+from src.bot.constants import EMPTY_STRING, CONNECT_TIMEOUT, READ_TIMEOUT
+from src.bot.application.shared.http.http_method import HTTPMethod
 
 
 @dataclass(init=True, repr=True)

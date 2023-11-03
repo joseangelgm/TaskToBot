@@ -4,9 +4,9 @@ import logging
 import sys
 from http.server import HTTPServer
 
-from config.constants import HTTP_SERVER_IP, HTTP_SERVER_PORT
-from config.set_up_bot import SetUpBot, SetUpBotException
-from src.infraestructure.telegram_bot_http_request_handler import TelegramBotHttpRequestHandler
+from src.bot.constants import HTTP_SERVER_IP, HTTP_SERVER_PORT
+from src.bot.infrastructure.set_up_bot import SetUpBot, SetUpBotException
+from src.bot.infrastructure.telegram_bot_http_request_handler import TelegramBotHttpRequestHandler
 
 
 if __name__ == "__main__":

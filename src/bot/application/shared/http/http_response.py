@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 
-from config.constants import EMPTY_STRING
+from src.bot.constants import EMPTY_STRING
 
 
 @dataclass(init=True, repr=True)

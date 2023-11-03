@@ -2,8 +2,8 @@ from http.server import BaseHTTPRequestHandler
 from logging import INFO, Logger
 import logging
 
-from src.application.service.redis.redis_service import RedisService
-from config.constants import BOT_SECRET_TOKEN_HEADER
+from src.bot.application.shared.redis.redis_service import RedisService
+from src.bot.constants import BOT_SECRET_TOKEN_HEADER
 
 
 class TelegramBotHttpRequestHandler(BaseHTTPRequestHandler):

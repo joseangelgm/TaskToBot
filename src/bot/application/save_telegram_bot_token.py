@@ -1,7 +1,7 @@
 import os
-from src.application.service.redis.redis_service import RedisService
+from src.bot.application.shared.redis.redis_service import RedisService
 
-from config.constants import BOT_TOKEN_CACHE_KEY
+from src.bot.constants import BOT_TOKEN_CACHE_KEY
 
 
 class SaveTelegramBotToken:

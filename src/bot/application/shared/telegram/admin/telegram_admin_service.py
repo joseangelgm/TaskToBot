@@ -3,16 +3,16 @@ import logging
 from logging import INFO, Logger
 import uuid
 
-from config.constants import BOT_SECRET_TOKEN_HEADER, BOT_TOKEN_CACHE_KEY, TELEGRAM_BOT_NGROK_TUNNEL_NAME
-from src.application.service.http.http_method import HTTPMethod
-from src.application.service.http.http_request import HTTPRequest
-from src.application.service.http.http_response import HTTPResponse
-from src.application.service.http.http_service import HTTPService, HTTPServiceConnectionRefusedException
-from src.application.service.ngrok_service import NgrokService, NgrokServiceException
-from src.application.service.telegram.admin.response.webhook_info_response import WebhookInfoResponse
-from src.application.service.telegram.admin.request.webhook_update_request import WebhookUpdateRequest
-from src.application.service.telegram.telegram_service_commons import TelegramServiceCommons
-from src.application.service.redis.redis_service import RedisService
+from src.bot.constants import BOT_SECRET_TOKEN_HEADER, BOT_TOKEN_CACHE_KEY, TELEGRAM_BOT_NGROK_TUNNEL_NAME
+from src.bot.application.shared.http.http_method import HTTPMethod
+from src.bot.application.shared.http.http_request import HTTPRequest
+from src.bot.application.shared.http.http_response import HTTPResponse
+from src.bot.application.shared.http.http_service import HTTPService, HTTPServiceConnectionRefusedException
+from src.bot.application.shared.ngrok_service import NgrokService, NgrokServiceException
+from src.bot.application.shared.telegram.admin.webhook_info_response import WebhookInfoResponse
+from src.bot.application.shared.telegram.admin.webhook_update_request import WebhookUpdateRequest
+from src.bot.application.shared.telegram.telegram_service_commons import TelegramServiceCommons
+from src.bot.application.shared.redis.redis_service import RedisService
 
 class TelegramAdminService(TelegramServiceCommons):
     """

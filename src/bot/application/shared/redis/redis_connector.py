@@ -3,8 +3,8 @@ import logging
 import redis
 from redis import Redis
 
-from config.constants import REDIS_HOST, REDIS_PORT, REDIS_MAX_CONNECTIONS, REDIS_CONNECTION_POOL_NAME
-from src.application.service.static_storage_service import StaticStorageService
+from src.bot.constants import REDIS_HOST, REDIS_PORT, REDIS_MAX_CONNECTIONS, REDIS_CONNECTION_POOL_NAME
+from src.bot.application.shared.static_storage_service import StaticStorageService
 
 
 class RedisConnector:

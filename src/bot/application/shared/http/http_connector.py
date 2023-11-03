@@ -3,9 +3,9 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 from urllib import parse
 
-from config.constants import DEFAULT_ENCODING
-from src.application.service.http.http_method import HTTPMethod
-from src.application.service.http.http_request import HTTPRequest
+from src.bot.constants import DEFAULT_ENCODING
+from src.bot.application.shared.http.http_method import HTTPMethod
+from src.bot.application.shared.http.http_request import HTTPRequest
 
 
 class HTTPConnector:

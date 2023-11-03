@@ -2,10 +2,10 @@ from http.client import HTTPResponse as httpResponse
 from logging import INFO, Logger
 import logging
 
-from config.constants import DEFAULT_ENCODING
-from src.application.service.http.http_connector import HTTPConnector, HTTPConnectorException, HTTPConnectorNotFoundException
-from src.application.service.http.http_request import HTTPRequest
-from src.application.service.http.http_response import HTTPResponse
+from src.bot.constants import DEFAULT_ENCODING
+from src.bot.application.shared.http.http_connector import HTTPConnector, HTTPConnectorException, HTTPConnectorNotFoundException
+from src.bot.application.shared.http.http_request import HTTPRequest
+from src.bot.application.shared.http.http_response import HTTPResponse
 
 
 class HTTPService:

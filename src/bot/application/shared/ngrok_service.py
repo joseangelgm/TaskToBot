@@ -2,11 +2,11 @@ import json
 import logging
 from logging import Logger
 
-from config.constants import NGROK_IP, NGROK_PORT, NGROK_TUNNELS_API
-from src.application.service.http.http_method import HTTPMethod
-from src.application.service.http.http_request import HTTPRequest
-from src.application.service.http.http_response import HTTPResponse
-from src.application.service.http.http_service import HTTPService, HTTPServiceConnectionRefusedException
+from src.bot.constants import NGROK_IP, NGROK_PORT, NGROK_TUNNELS_API
+from src.bot.application.shared.http.http_method import HTTPMethod
+from src.bot.application.shared.http.http_request import HTTPRequest
+from src.bot.application.shared.http.http_response import HTTPResponse
+from src.bot.application.shared.http.http_service import HTTPService, HTTPServiceConnectionRefusedException
 
 
 class NgrokService:

@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from typing import List
 
-from config.constants import BOT_DROP_PENDING_UPDATES, BOT_MAX_CONNECTIONS, EMPTY_STRING
+from src.bot.constants import BOT_DROP_PENDING_UPDATES, BOT_MAX_CONNECTIONS, EMPTY_STRING
 
 
 @dataclass(init=True, repr=True)

@@ -1,4 +1,4 @@
-from config.constants import TELEGRAM_API_ENDPOINT
+from src.bot.constants import TELEGRAM_API_ENDPOINT
 
 
 class TelegramServiceCommons:
