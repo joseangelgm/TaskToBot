@@ -3,7 +3,7 @@ from logging import INFO, Logger
 import logging
 
 from src.bot.application.shared.redis.redis_service import RedisService
-from src.bot.constants import BOT_SECRET_TOKEN_HEADER
+from src.bot.constants import BOT_SECRET_TOKEN_HEADER_CACHE_KEY
 
 
 class TelegramBotHttpRequestHandler(BaseHTTPRequestHandler):
@@ -14,7 +14,7 @@ class TelegramBotHttpRequestHandler(BaseHTTPRequestHandler):
     def do_POST(self) -> None:
         secret_token: str = str(self.headers.get("X-Telegram-Bot-Api-Secret-Token"))
 
-        secret_token_in_cache: str = RedisService.get_value_as_str(BOT_SECRET_TOKEN_HEADER)
+        secret_token_in_cache: str = RedisService.get_value_as_str(BOT_SECRET_TOKEN_HEADER_CACHE_KEY)
 
         if secret_token is None or secret_token != secret_token_in_cache:
             self.__LOGGER.log(

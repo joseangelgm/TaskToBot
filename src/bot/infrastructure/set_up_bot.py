@@ -1,6 +1,7 @@
 import logging
 
-from src.bot.application.shared.telegram.admin.telegram_admin_service import TelegramAdminService, TelegramAdminServiceException
+from src.bot.application.update_bot_webhook import UpdateBotWebhook
+from src.bot.application.shared.telegram.admin.telegram_admin_service import TelegramAdminServiceException
 from src.bot.application.save_telegram_bot_token import SaveTelegramBotToken
 from src.bot.application.shared.redis.redis_connector import RedisConnector, RedisConnectorNotRunningException
 from src.bot.application.shared.static_storage_service import StaticStorageService
@@ -45,8 +46,7 @@ class SetUpBot:
         SaveTelegramBotToken.save_telegram_bot_token_from_environment()
 
         try:
-            telegram_admin_service: TelegramAdminService = TelegramAdminService()
-            telegram_admin_service.update_webhook()
+            UpdateBotWebhook.update_bot_webhook()
         except TelegramAdminServiceException as e:
             raise SetUpBotException from e
 

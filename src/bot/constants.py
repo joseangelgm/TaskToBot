@@ -8,8 +8,8 @@ BOT_MAX_CONNECTIONS: int = 10
 BOT_DROP_PENDING_UPDATES: bool = False
 
 # TELEGRAM CACHE KEYS
-BOT_TOKEN_CACHE_KEY: str = "TELEGRAM_BOT_TOKEN"
-BOT_SECRET_TOKEN_HEADER: str = "TELEGRAM_SECRET_TOKEN_HEADER"
+BOT_TOKEN_CACHE_KEY: str = "BOT_TOKEN"
+BOT_SECRET_TOKEN_HEADER_CACHE_KEY: str = "BOT_SECRET_TOKEN" # This data telegram sends you in each request
 
 ### Telegram bot http server
 HTTP_SERVER_IP: str = "localhost"
