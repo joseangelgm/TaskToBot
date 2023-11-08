@@ -6,8 +6,7 @@ from src.bot.constants import BOT_TOKEN_CACHE_KEY
 
 class SaveTelegramBotToken:
     """
-    Save telegram bot token in cache. Telegram bot token has to be
-    saved into TELEGRAM_BOT_TOKEN env variable
+    Save telegram bot token in cache
     """
 
     def __init__(self) -> None:
