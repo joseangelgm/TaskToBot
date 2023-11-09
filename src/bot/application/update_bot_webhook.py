@@ -31,20 +31,17 @@ class UpdateBotWebhook:
         except NgrokServiceException as e:
             raise UpdateBotWebhookException(e) from e
         
-
-        secret_token: str = TelegramAdminService.generate_secret_token()
-
+        secret_token: str = RedisService.get_value(BOT_SECRET_TOKEN_HEADER_CACHE_KEY)
+        
         webhook_update_request: WebhookUpdateRequest = WebhookUpdateRequest(
             url=telegram_bot_public_url,
             secret_token=secret_token
         )
+        del secret_token
         del telegram_bot_public_url
 
         TelegramAdminService.update_webhook(webhook_update_request)
         del webhook_update_request
-
-        RedisService.set_value(BOT_SECRET_TOKEN_HEADER_CACHE_KEY, secret_token)
-        del secret_token
 
 
 class UpdateBotWebhookException(Exception):

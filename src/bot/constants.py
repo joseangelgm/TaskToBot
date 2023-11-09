@@ -10,6 +10,7 @@ BOT_DROP_PENDING_UPDATES: bool = False
 # TELEGRAM CACHE KEYS
 BOT_TOKEN_CACHE_KEY: str = "BOT_TOKEN"
 BOT_SECRET_TOKEN_HEADER_CACHE_KEY: str = "BOT_SECRET_TOKEN" # This data telegram sends you in each request
+OLD_BOT_SECRET_TOKEN_HEADER_CACHE_KEY: str = "OLD_BOT_SECRET_TOKEN"
 
 ### Telegram bot http server
 HTTP_SERVER_IP: str = "localhost"

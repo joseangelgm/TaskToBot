@@ -1,5 +1,6 @@
 import logging
 
+from src.bot.application.reload_secret_token import ReloadSecretToken
 from src.bot.application.update_bot_webhook import UpdateBotWebhook
 from src.bot.application.shared.telegram.admin.telegram_admin_service import TelegramAdminServiceException
 from src.bot.application.save_telegram_bot_token import SaveTelegramBotToken
@@ -44,6 +45,9 @@ class SetUpBot:
             raise SetUpBotException from e
 
         SaveTelegramBotToken.save_telegram_bot_token_from_environment()
+
+        # TODO: This operation will be executed by cron, not in every start up. Now is for development
+        ReloadSecretToken.reload_secret_token()
 
         try:
             UpdateBotWebhook.update_bot_webhook()
